@@ -1,0 +1,72 @@
+/* estilos del nav */
+.body header nav {
+    background-color: nth($colores, 1);
+    text-align: center;
+    text-transform: uppercase;
+
+    .boton {
+        background-color: nth($colores, 5);
+        @include sizes(3rem, $medida-2);
+        border: 4px solid nth($colores, 7);
+        @extend %act;
+
+        img {
+            @include sizes($medida-2, $medida-1);
+            margin-bottom: 0.15rem;
+        }
+    }
+
+    .desk {
+
+        li {
+            @extend %nav;
+        }
+    }
+
+
+    div {
+        a img {
+            @include sizes(8rem, 4rem);
+            @extend %act;
+        }
+    }
+
+    .buscbot {
+        background-color: nth($colores, 1);
+
+        .buscbot__phone li {
+            @extend %nav;
+        }
+    }
+}
+
+/* estilos de la mediaquerie tablet*/
+@media screen and (min-width:576px) {
+
+    /*estilos del nav*/
+    #a {
+        font-size: $medida-1;
+    }
+
+    .body header .nav1 {
+        height: 6rem;
+    }
+    .body header nav {
+        .desk {
+            margin-left: 0rem;
+        }
+    }
+    .boton {
+        display: none;
+    }
+
+}
+/* estilos de la mediaquerie desktop*/
+@media screen and (min-width:1000px) {
+
+    .body header nav {
+        .desk {
+            margin-left: -8rem;
+        }
+    }
+}

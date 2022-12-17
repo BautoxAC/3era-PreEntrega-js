@@ -1,0 +1,93 @@
+/*estilos de proyectos*/
+.mainproy {
+    h1 {
+        @include h($medida-3);
+        @include tb($medida-3, $medida-3);
+    }
+
+    .mainproy__sec {
+        margin: $medida-2;
+        margin-bottom: $medida-2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            padding: $medida-2;
+            @include sizes(100%, 14rem);
+        }
+
+        h2 {
+            text-align: center;
+            @include h($medida-2);
+            padding: 0rem $medida-05;
+        }
+
+        p {
+            padding: $medida-2;
+            @include p(center);
+        }
+
+        .mainproy__sec__span {
+            display: none;
+        }
+
+        border: $medida-05 inset nth($colores, 7);
+        border-radius: $medida-1 0rem $medida-1 0rem;
+    }
+
+}
+
+/* estilos de la mediaquerie tablet*/
+@media screen and (min-width:576px) {
+    .mainproy {
+        .mainproy__sec {
+            @include tb($medida-3, $medida-3);
+            p{
+                padding: $medida-1 + $medida-05 $medida-3;
+            }
+            .mainproy__sec__span {
+                display: inline;
+            }
+            img {
+                @include sizes(30rem, 20rem);
+            }
+        }
+    }
+}
+/* estilos de la mediaquerie desktop*/
+@media screen and (min-width:1000px) {
+    .mainproy {
+        h1 {
+            font-size: $medida-3 + $medida-05;
+        }
+
+        .mainproy__sec {
+            display: grid;
+            grid-template-areas:
+                "img h2"
+                "img p";
+
+            h2 {
+                grid-area: h2;
+                font-size: $medida-2 +$medida-05;
+                margin-top: $medida-1 + $medida-05;
+            }
+
+            p {
+                grid-area: p;
+                text-align: center;
+                margin-bottom: $medida-1;
+            }
+
+            .mainproy__sec__span {
+                display: inline;
+            }
+
+            img {
+                grid-area: img;
+            }
+        }
+    }
+}

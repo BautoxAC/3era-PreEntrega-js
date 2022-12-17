@@ -1,0 +1,232 @@
+//extend
+%borde {
+    border: 0.3rem solid nth($colores, 7);
+    border-radius: $medida-05;
+}
+
+%prol {
+    font-family: Montserrat;
+}
+
+%act {
+    transition: 0.3s;
+
+    &:active {
+        transform: scale(0.8);
+    }
+}
+
+%flexm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+%pro {
+    @extend %borde;
+    border: 3px groove nth($colores, 2);
+    margin: $medida-1 - $medida-025;
+    text-align: center;
+    transition: 1s;
+    padding: $medida-1;
+    overflow: hidden;
+    @extend %flexm;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+    h2 {
+        @include tb($medida-05, $medida-05);
+        @extend %prol;
+        font-size: $medida-2;
+    }
+
+    p {
+        font-weight: bold;
+        font-size: $medida-1 + $medida-05;
+        padding-bottom: $medida-1;
+        @extend %prol;
+    }
+
+    &:hover {
+        transform: scale(1.08);
+    }
+
+
+    button {
+        font-size: $medida-1 + $medida-05;
+        background-color: nth($colores, 9);
+
+        &:hover {
+            background-color: nth($colores, 2);
+        }
+
+        @extend %act;
+    }
+}
+
+%imgpm {
+    img {
+        @include sizes(100%, 8.8rem);
+    }
+}
+%bot {
+    background-color: nth($colores, 7);
+    @extend %borde;
+    transition: 1s;
+    font-family: Tiemann, serif;
+    font-weight: bold;
+    font-size: $medida-1;
+    @include sizes(6rem, $medida-2 + $medida-025);
+
+    &:hover {
+        transform: scale(1.08);
+    }
+
+}
+@media screen and (min-width:576px) {
+    %bott {
+        font-size: $medida-1 + $medida-05;
+        @include sizes(9rem, $medida-3);
+    }
+
+    %prot {
+        margin: $medida-1;
+
+        h2 {
+            font-size: $medida-2;
+        }
+
+        p {
+            font-size: $medida-1 + $medida-05;
+        }
+
+        button {
+            font-size: $medida-1;
+        }
+
+    }
+
+    %imgpt {
+        img {
+            @include sizes(80%, 8rem);
+        }
+    }
+
+    %grid {
+        display: grid;
+        margin: 3rem;
+        row-gap: $medida-1;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width:1000px) {
+    %grid2 {
+        row-gap: $medida-1;
+        margin-bottom: $medida-2;
+        column-gap: $medida-1;
+
+        p {
+            grid-area: p;
+        }
+
+        h3 {
+            grid-area: h2;
+            padding-top: $medida-2;
+        }
+
+        img {
+            @include sizes(100%, 18rem);
+            grid-area: img;
+        }
+
+        div {
+            grid-area: b;
+        }
+    }
+
+    %noned {
+        display: none;
+    }
+
+    %imgp {
+        img {
+            @include sizes(80%, 15rem);
+        }
+    }
+
+    %prod {
+        margin: $medida-1 + $medida-025;
+
+        p {
+            font-size: $medida-1 + $medida-05;
+        }
+
+        button {
+            font-size: $medida-1 + $medida-05;
+        }
+
+        h2 {
+            font-size: $medida-3 - $medida-05;
+        }
+    }
+}
+
+%nav {
+    font-weight: bold;
+    padding: $medida-05;
+    transition: 1s;
+
+    &:hover {
+        text-decoration: underline;
+        transform: scale(1.2);
+    }
+
+    #a {
+        color: nth($colores, 3);
+        @extend %act;
+
+        img {
+            @include sizes($medida-2, $medida-2);
+            margin-right: $medida-05;
+        }
+    }
+}
+
+%boton {
+    display: flex;
+    justify-content: center;
+    margin-top: $medida-2 * 1.2;
+    font-size: $medida-1 + $medida-05;
+    transition: 1s;
+    margin-bottom: $medida-2;
+
+    button {
+        @extend %borde;
+        border: 0.3rem solid nth($colores, 2);
+        background-color: nth($colores, 3);
+        transition: 1s;
+
+        &:hover {
+            transform: scale(1.08);
+        }
+    }
+
+    a {
+        display: inline-block;
+        padding: $medida-1;
+        text-decoration: none;
+        color: nth($colores, 2);
+        letter-spacing: 0.15rem;
+        font-weight: bold;
+        border: 0.3rem solid nth($colores, 7);
+        @extend %act;
+    }
+}
+
+%none {
+    display: none;
+}

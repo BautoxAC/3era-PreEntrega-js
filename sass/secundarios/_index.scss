@@ -1,0 +1,306 @@
+/*estilos del index*/
+.mainindex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .mainindex__sec1 {
+        position: absolute;
+        top: 5.65rem;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: 15rem;
+        }
+    }
+
+    .mainindex__sec2 {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        z-index: 2;
+        height: 10rem;
+        margin-bottom: $medida-2;
+        padding-left: $medida-2;
+        padding-right: $medida-2;
+        img {
+            margin-top: 6rem;
+            z-index: 2;
+            @include sizes(45%, 7rem);
+        }
+
+        p {
+            padding-top: $medida-2;
+            background: -webkit-linear-gradient(nth($colores, 3), nth($colores, 8));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: $medida-1;
+            text-align: center;
+            @include sizes(100%, 5rem);
+        }
+    }
+}
+
+.mainindex__sec3 {
+    h1 {
+        @include h(3rem);
+        padding: $medida-1;
+        margin: 3rem;
+        margin-bottom: -$medida-1;
+    }
+
+    .mainindex__sec3__contenedorpro {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column wrap;
+        margin-bottom: $medida-1 + $medida-025;
+
+        .mainindex__sec3__contenedorpro__hijo {
+            margin-top: $medida-2;
+            width: 70%;
+
+            p {
+                .s1 {
+                    text-decoration: line-through;
+                    opacity: 50%;
+                }
+            }
+
+            span {
+                padding: $medida-05;
+                line-height: $medida-2;
+                font-size: $medida-1 + $medida-05;
+            }
+
+            @extend %pro;
+
+            img {
+                @include sizes(70%, 12rem);
+            }
+        }
+    }
+
+    .mainindex__sec3__boton {
+        @extend %boton
+    }
+}
+
+hr {
+    margin: 0;
+    @include tb(6rem, 6rem);
+    width: 100%;
+}
+
+.mainindex__sec4m {
+    width: 100%;
+
+    .mainindex__sec4m__boton {
+        @extend %boton;
+    }
+
+    h3 {
+        @include h($medida-2 + $medida-05);
+        margin-top: $medida-2;
+    }
+
+    h2 {
+        margin-bottom: $medida-2 + $medida-1;
+        @include h($medida-2 * 1.75);
+    }
+
+    img {
+        @include sizes(100%, 16rem)
+    }
+}
+
+.mainindex__sec4 {
+    @extend %none;
+
+    .mainindex__sec4__boton {
+        @extend %boton;
+    }
+}
+
+/* estilos de la mediaquerie tablet*/
+@media screen and (min-width:576px) {
+
+    /*estilos de index*/
+
+    .mainindex {
+        .mainindex__sec1 {
+            top: 6rem;
+
+            img {
+                height: 35rem;
+            }
+        }
+
+        .mainindex__sec2 {
+            height: 32rem;
+
+            p {
+                font-size: $medida-1 + 0.25rem;
+            }
+
+            img {
+                @include sizes(auto, auto);
+            }
+        }
+    }
+
+    .mainindex__sec3 {
+        width: 100%;
+
+        h1 {
+            margin: 3rem;
+            font-size: 4.5rem;
+        }
+
+        .mainindex__sec3__contenedorpro {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-flow: row nowrap;
+
+            .mainindex__sec3__contenedorpro__hijo {
+                width: 25%;
+
+                img {
+                    @include sizes(66%, 7rem)
+                }
+            }
+        }
+    }
+    hr {
+        @include tb(8rem, 8rem);
+    }
+
+    .mainindex__sec4m {
+        img {
+            margin-top: $medida-1;
+            @include sizes(100%, 24rem)
+        }
+    }
+
+}
+/* estilos de la mediaquerie desktop*/
+@media screen and (min-width:1000px) {
+    .mainindex {
+        .mainindex__sec1 {
+            img {
+                height: 45rem;
+            }
+        }
+
+        .mainindex__sec2 {
+            height: 45rem;
+        }
+    }
+
+    .mainindex__sec4m {
+        @extend %noned;
+    }
+
+    .mainindex__sec4 {
+        width: 95%;
+        margin-bottom: 6rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+            text-align: center;
+            font-size: 4.25rem;
+            text-decoration: underline nth($colores, 5);
+            font-family: Tiemann, serif;
+        }
+
+        .mainindex__sec4__div1 {
+            margin-top: 7rem;
+            width: 85%;
+            display: grid;
+            grid-template-columns: 42.5% 30% 32.5%;
+            grid-template-areas:
+                "img h2 b"
+                "img p b";
+            @extend %grid2;
+
+            p {
+                @include p(left);
+            }
+
+            h3 {
+                text-align: left;
+                font-size: $medida-2 * 1.15;
+                text-decoration: underline nth($colores, 5);
+                font-family: Tiemann, serif;
+            }
+        }
+
+        .mainindex__sec4__div2 {
+            width: 80%;
+            display: grid;
+            grid-template-columns: 32.5% 25% 42.5%;
+            grid-template-areas:
+                "b h2 img"
+                "b p img";
+            @extend %grid2;
+
+            p {
+                @include p(right);
+            }
+
+            h3 {
+                text-align: right;
+                font-size: $medida-2 * 1.15;
+                text-decoration: underline nth($colores, 5);
+                font-family: Tiemann, serif;
+            }
+
+            margin-top: 13rem;
+        }
+
+        .mainindex__sec4__div3 {
+            width: 85%;
+            display: grid;
+            grid-template-columns: 42.5% 30% 32.5%;
+            grid-template-areas:
+                "img h2 b"
+                "img p b";
+            @extend %grid2;
+            margin-top: 13rem;
+
+            p {
+                @include p(left);
+            }
+
+            h3 {
+                text-align: left;
+                font-size: $medida-2 * 1.15;
+                text-decoration: underline nth($colores, 5);
+                font-family: Tiemann, serif;
+            }
+        }
+    }
+
+    .mainindex__sec3 {
+        .mainindex__sec3__contenedorpro {
+            .mainindex__sec3__contenedorpro__hijo {
+                width: 25%;
+
+                img {
+                    @include sizes(66%, 10rem)
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,83 @@
+/*estilo de contact*/
+.main {
+    display: flex;
+    justify-content: center;
+
+    .main__caja {
+        margin: 5rem;
+        @include sizes(40rem, auto);
+        border: $medida-05 / 2 solid nth($colores, 7);
+        border-radius: $medida-05;
+
+        h1 {
+            padding: $medida-1 + $medida-05;
+            @include h($medida-3);
+        }
+
+        div {
+            margin: $medida-2;
+
+            label {
+                font-family: Tiemann, serif;
+                font-size: $medida-1 + $medida-05;
+                font-weight: 500;
+            }
+        }
+
+        .main__caja__text {
+            input {
+                height: 5rem;
+            }
+        }
+
+        .main__caja__bot {
+            margin: 0rem;
+            @include tb($medida-1,$medida-2);
+            width: 100%;
+            display: grid;
+            justify-items: center;
+            row-gap: $medida-1;
+            grid-template-areas:
+                "rese envia";
+
+            .rese {
+                grid-area: rese;
+                @extend %bot;
+            }
+
+            .submi {
+                grid-area: envia;
+                align-self: flex-end;
+                @extend %bot;
+            }
+        }
+
+    }
+}
+
+/*estilos de las mediaqueries tablet*/
+@media screen and (min-width:576px) {
+    .main {
+        .main__caja {
+
+            .main__caja__bot {
+                .rese{
+                    @extend %bott;
+                }
+
+                .submi {
+                    @extend %bott;
+                }
+            }
+        }
+    }
+}
+
+/*estilos de las mediaqueries desktop*/
+@media screen and (min-width:1000px) {
+    .main {
+        .main__caja {
+            margin: 8rem;
+        }
+    }
+}

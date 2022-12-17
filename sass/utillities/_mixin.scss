@@ -1,0 +1,23 @@
+@mixin sizes($width, $height){
+    width: $width;
+    height: $height;
+}
+@mixin margen($margin, $padding){
+    padding: $padding;
+    margin: $margin;
+}
+@mixin h($font-size) {
+        font-size: $font-size;
+        text-decoration: underline nth($colores, 5);
+        font-family: Tiemann, serif;
+        text-align: center;
+}
+@mixin  tb($margin-top, $margina-bot) {
+        margin-top: $margin-top;
+        margin-bottom: $margina-bot;
+}
+@mixin p($text-aling) {
+    line-height: $medida-2;
+    font-size: $medida-1 + $medida-025;
+    text-align: $text-aling;
+}
