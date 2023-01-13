@@ -308,6 +308,309 @@
     width: 40%;
     height: 10rem; } }
 
+/*reset*/
+* {
+  margin: 0rem;
+  padding: 0rem;
+  box-sizing: border-box; }
+
+.body {
+  width: 100%; }
+
+/* estilos del index */
+#reinicio {
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+#h1 {
+  margin-top: 2rem;
+  font-size: 3rem;
+  text-decoration: underline #319fe7;
+  font-family: Tiemann, serif;
+  text-align: center; }
+
+#searchText {
+  margin-top: 0.25rem;
+  font-size: 2rem;
+  text-decoration: underline #319fe7;
+  font-family: Tiemann, serif;
+  display: block; }
+
+#search {
+  display: inline;
+  width: 20rem; }
+
+#mainpro {
+  display: flex;
+  flex-wrap: wrap; }
+
+a {
+  color: white;
+  text-decoration: none; }
+
+a:hover {
+  color: white; }
+
+.volver {
+  color: black; }
+
+/* estilos de las utilidades del index */
+#utilidades {
+  display: grid;
+  grid-template-areas: "buscador categorias carrito";
+  grid-template-columns: 20rem 1fr 1fr;
+  width: 97%; }
+
+.carrito {
+  width: 100%;
+  grid-area: carrito;
+  display: flex;
+  justify-content: end; }
+
+.carrito__img {
+  width: 8rem;
+  height: 8rem; }
+
+.buscador {
+  margin: 1rem;
+  grid-area: buscador; }
+
+/* estilos de las categorias */
+.categorias {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 2rem; }
+
+.categorias__mostrar__hijo {
+  display: none;
+  list-style: none;
+  padding-left: 0rem;
+  padding: 1rem;
+  position: absolute;
+  background-color: aqua;
+  border: 1px solid black;
+  border-radius: 3px; }
+
+.categorias__mostrar:hover > ul {
+  display: block; }
+
+.categorias__mostrar__hijo__li {
+  font-size: 1.5rem; }
+
+.categorias__mostrar__hijo__check {
+  height: 1rem;
+  width: 1rem; }
+
+.categorias {
+  grid-area: categorias; }
+
+.categorias__mostrar__titulo {
+  font-size: 5rem; }
+
+/* estilos de las estiquetas de productos */
+.mainpro__hijo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1%;
+  border: 0.3rem solid #20618a;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  width: 18%; }
+
+#mainpro {
+  display: flex;
+  justify-content: left;
+  width: 100%; }
+
+.mainpro__hijo__img {
+  width: 8rem;
+  height: 8rem; }
+
+/* estilos ver producto */
+.comprarProductoHijo__img {
+  width: 20rem;
+  height: 20rem; }
+
+.comprarProductoHijo {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+#volver {
+  display: block;
+  margin-top: 1rem; }
+
+#carrito {
+  margin: 1rem; }
+
+/* extras */
+.noMostrar {
+  display: none; }
+
+#noMostrar {
+  display: none; }
+
+/* estilos carrito */
+#mainCarrito__contenedorCarrito {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.finalizarSi {
+  display: inline; }
+
+/* elementos del carrito */
+#mainCarrito__utilidades {
+  display: flex;
+  justify-content: end;
+  margin: 1rem; }
+
+#mainCarrito__contenedorCarrito {
+  display: flex;
+  flex-direction: column; }
+
+.elementoCarrito {
+  display: grid;
+  grid-template-areas: "img titulo stock Unitario input subtotal quitar";
+  margin: 1.25rem;
+  width: 90%;
+  grid-template-columns: 8rem 10rem 6rem 8rem 12rem 8rem 8rem; }
+
+.elementoCarrito .elementoCarrito__img {
+  grid-area: img;
+  width: 6rem;
+  height: 6rem;
+  margin: 1rem; }
+
+.elementoCarrito .subtotal {
+  grid-area: subtotal;
+  margin: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.elementoCarrito .stock {
+  grid-area: stock;
+  margin: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.elementoCarrito .precioUnitario {
+  grid-area: Unitario;
+  margin: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.elementoCarrito .input {
+  grid-area: input;
+  margin: 1rem;
+  margin-top: 2.5rem;
+  display: flex;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.elementoCarrito .nombre {
+  grid-area: titulo;
+  margin: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.elementoCarrito .cruz {
+  grid-area: quitar;
+  width: 5rem;
+  height: 5rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem; }
+
+.inputNumber {
+  margin: 0.3rem; }
+
+#titulo {
+  display: grid;
+  grid-template-areas: "img nombre disp precioUni input sub cruz";
+  margin: 1.25rem;
+  width: 90%;
+  grid-template-columns: 8rem 10rem 6rem 8rem 12rem 8rem 8rem; }
+
+#titulo .tituloElementoCarrito__img {
+  margin: 1rem;
+  grid-area: img;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem; }
+
+#titulo .tituloNombre {
+  margin: 1rem;
+  grid-area: nombre;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem; }
+
+#titulo .tituloStock {
+  margin: 1rem;
+  grid-area: disp;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem; }
+
+#titulo .tituloPrecioUnitario {
+  margin: 1rem;
+  grid-area: precioUni;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem; }
+
+#titulo .input {
+  margin: 1rem;
+  grid-area: input; }
+
+#titulo .tituloSubtotal {
+  margin: 1rem;
+  grid-area: sub;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem; }
+
+#titulo .tituloCruz {
+  margin: 1rem;
+  grid-area: cruz; }
+
+#total {
+  font-size: 1.5rem;
+  margin-right: 3rem; }
+
+#mainCarrito__utilidades {
+  display: flex; }
+
+#finalizarSi {
+  height: 2.5rem;
+  margin-right: 2rem; }
+
 /* estilos del nav */
 .body header nav {
   background-color: #47b5ff;
