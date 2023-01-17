@@ -1,0 +1,13 @@
+[
+    { "nombre": "JeansB", "id": 0, "categoria": "pantalones", "stock": 4, "precio": 20, "imgUrl": "./../../img/productos/JeansB.png" },
+    { "nombre": "MediasC", "id": 1, "categoria": "medias", "stock": 10, "precio": 30, "imgUrl": "./../../img/productos/MediasC.png" },
+    { "nombre": "MediasB", "id": 2, "categoria": "medias", "stock": 8, "precio": 20, "imgUrl": "./../../img/productos/MediasB.png" },
+    { "nombre": "Bluney", "id": 3, "categoria": "remeras", "stock": 12, "precio": 20, "imgUrl": "./../../img/productos/Bluney.png" },
+    { "nombre": "PantC", "id": 4, "categoria": "pantalones", "stock": 14, "precio": 45, "imgUrl": "./../../img/productos/PantC.png" },
+    { "nombre": "DarkC", "id": 5, "categoria": "remeras", "stock": 20, "precio": 20, "imgUrl": "./../../img/productos/DarkC.png" },
+    { "nombre": "Celestyn", "id": 6, "categoria": "accesorios", "stock": 3, "precio": 20, "imgUrl": "./../../img/productos/Celestyn.png" },
+    { "nombre": "Celest", "id": 7, "categoria": "vestidos", "stock": 11, "precio": 50, "imgUrl": "./../../img/productos/Celest.png" },
+    { "nombre": "LightE", "id": 8, "categoria": "remeras", "stock": 16, "precio": 15, "imgUrl": "./../../img/productos/LightE.png" },
+    { "nombre": "LightB", "id": 9, "categoria": "vestidos", "stock": 6, "precio": 50, "imgUrl": "./../../img/productos/LightB.png" },
+    { "nombre": "LightE2", "id": 10, "categoria": "remeras", "stock": 7, "precio": 20, "imgUrl": "./../../img/productos/LightE2.png" }
+]
