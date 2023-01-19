@@ -42,14 +42,14 @@ function TodoElPrograma(productos) {
                 const producto = arrayDeProductos[i];
                 contenedorProductos.innerHTML += `
         <div class="mainpro__hijo" id="producto__id:${producto.id}">
-            <img src="${producto.imgUrl}" alt="medias de color azul" class="mainpro__hijo__img">
+            <img src="${producto.imgUrl}" alt="${producto.alt}" class="mainpro__hijo__img">
             <h3>${producto.nombre}</h3>
             <p>${producto.precio}$</p>
             <button type="button" class="btn btn-primary" id="producto__N:${i}__boton">Ver producto</button>
         </div>`
             }
         } else {
-            contenedorProductos.innerHTML += `<h3 class="noSeEncontro">No se encontro la busqueda</h3>`
+            contenedorProductos.innerHTML += `<h3 class="noSeEncontro">No se encontro la búsqueda</h3>`
         }
         //le pone el evento click a los botones de agregar carrito
         for (let i = 0; i < arrayDeProductos.length; i++) {
@@ -113,47 +113,38 @@ function TodoElPrograma(productos) {
                 }
                 function agregarAlCarrito() {
                     if (compra.disponible === 0) {
-                        alert("No puedes agregar más items de este producto\nEstan todos los disponibles en el carrito")
+                        Swal.fire({
+                            icon: "error",
+                            title: "SIN STOCK DISPONIBLE DEL PRODUCTO",
+                            text: "Estan todos los disponibles en el carrito",
+                        })
+                        compra.sinStock = true
                     } else {
                         if (compra.disponible >= stock.value && stock.value >= 1) {
-                            if (compra.disponible === 0) {
-                                compra.sinStock = true
-                                Swal.fire({
-                                    icon: "error",
-                                    title: "SIN STOCK DISPONIBLE DEL PRODUCTO",
-                                    text: "Estan todos los disponibles en el carrito",
-                                })
-                                utiliadesIndex.id = "utilidades"
-                                tituloIndex.id = "h1"
-                                reini.id = "reinicio"
-                                renderizarProductos(productos)
+                            //se hace la resta de la cantidad que el usuario puso y los disponibles
+                            compra.disponible -= stock.value
+                            //revisa si hay un producto repetido en el carrito para ver si agregar uno nuevo o cambiar los valores
+                            if (carrito.find(producto => producto.id === compra.id)) {
+                                let repetido = carrito[carrito.indexOf(carrito.find(producto => producto.id === compra.id))]
+                                repetido.disponible = compra.disponible
+                                repetido.comprar += Number(stock.value)
                             } else {
-                                //se hace la resta de la cantidad que el usuario puso y los disponibles
-                                compra.disponible -= stock.value
-                                //revisa si hay un producto repetido en el carrito para ver si agregar uno nuevo o cambiar los valores
-                                if (carrito.find(producto => producto.id === compra.id)) {
-                                    let repetido = carrito[carrito.indexOf(carrito.find(producto => producto.id === compra.id))]
-                                    repetido.disponible = compra.disponible
-                                    repetido.comprar += Number(stock.value)
-                                } else {
-                                    carrito.push({ ...compra, comprar: Number(stock.value) })
-                                }
-                                localStorage.setItem("carrito", JSON.stringify(carrito))
-                                Toastify({
-                                    text: "Se agrego tu compra satisfactoriamente al carrito",
-                                    duration: 3000,
-                                    stopOnFocus: true,
-                                    gravity: "bottom",
-                                    position: "right",
-                                    style: {
-                                        background: "linear-gradient(to right, #00b09b, #96c93d)",
-                                    },
-                                }).showToast();
-                                //revisa si hay disponibles en la compra para que el usuario no compre mas del producto
-                                disponibleTexto.innerText = "disponibles: " + compra.disponible
-                                localStorage.setItem("productos", JSON.stringify(productos))
-                                stock.value = 0
+                                carrito.push({ ...compra, comprar: Number(stock.value) })
                             }
+                            localStorage.setItem("carrito", JSON.stringify(carrito))
+                            Toastify({
+                                text: "Se agrego tu compra satisfactoriamente al carrito",
+                                duration: 3000,
+                                stopOnFocus: true,
+                                gravity: "bottom",
+                                position: "right",
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                },
+                            }).showToast();
+                            disponibleTexto.innerText = "disponibles: " + compra.disponible
+                            localStorage.setItem("productos", JSON.stringify(productos))
+                            stock.value = 0
                         } else {
                             Swal.fire({
                                 icon: "error",
