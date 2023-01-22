@@ -49,7 +49,7 @@ if (localStorage.getItem("carrito")) {
             `
         }
         for (let i = 0; i < carrito.length; i++) {
-            //funcion si ocurre un cambio de prcio los valores del subtotal y el total cambien
+            //funcion si ocurre un cambio de precio los valores del subtotal y el total cambien
             function cambioDePrecio() {
                 precio.innerText = cant.value * producto.precio + "$"
                 total[i] = parseInt(precio.innerText)
@@ -98,7 +98,7 @@ if (localStorage.getItem("carrito")) {
                 carrito.splice(carrito.indexOf(elementoEliminado), 1)
                 localStorage.setItem("carrito", JSON.stringify(carrito))
                 Toastify({
-                    text: "Producto eliminado correctamnete",
+                    text: "Producto eliminado correctamente",
                     duration: 3000,
                     stopOnFocus: true,
                     gravity: "bottom",
@@ -143,7 +143,8 @@ if (localStorage.getItem("carrito")) {
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    setTimeout(() =>//al terminar la compra a los productos comprados se le resta la cantidad de productos comprados al stock de estos y recarga la pagina para que aparezca que no hay productos en el carrito
+                    setTimeout(() =>
+                    //al terminar la compra a los productos comprados se le resta la cantidad de productos comprados al stock de estos y recarga la pagina para que aparezca que no hay productos en el carrito
                     {
                         for (let i = 0; i < carrito.length; i++) {
                             let elementoEliminado = productos.find(producto => producto.id === carrito[i].id)
@@ -183,7 +184,8 @@ if (localStorage.getItem("carrito")) {
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    setTimeout(() =>//al terminar la compra a los productos comprados se le resta la cantidad de productos comprados al stock de estos y recarga la pagina para que aparezca que no hay productos en el carrito
+                    setTimeout(() =>
+                    //al terminar la compra a los productos comprados se le resta la cantidad de productos comprados al stock de estos y recarga la pagina para que aparezca que no hay productos en el carrito
                     {
                         for (let i = 0; i < carrito.length; i++) {
                             let comprado = productos.find(producto => producto.id === carrito[i].id)
