@@ -368,8 +368,12 @@ a:hover {
     height: 2.5rem;
     margin-right: 2rem;
 }
-.body{
+.bodyCarrito{
     margin-top: -1.8rem;
+    background-color: nth($colores, 3);
+    font-family: Futura,sans-serif;
+    color: nth($colores, 2 );
+    width: 100%;
 }
 .head{
     padding-top: 4rem;

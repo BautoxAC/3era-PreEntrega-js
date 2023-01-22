@@ -481,8 +481,12 @@ a:hover {
   height: 2.5rem;
   margin-right: 2rem; }
 
-.body {
-  margin-top: -1.8rem; }
+.bodyCarrito {
+  margin-top: -1.8rem;
+  background-color: #dff6ff;
+  font-family: Futura,sans-serif;
+  color: #06283d;
+  width: 100%; }
 
 .head {
   padding-top: 4rem; }
