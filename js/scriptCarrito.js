@@ -24,6 +24,7 @@ if (localStorage.getItem("carrito")) {
             <h2 class="tituloStock">Stock</h2>
             <h2 class="tituloPrecioUnitario">C/U</h2>
             <div class="tituloCruz">
+            <button class="tituloCruz__vaciarCarrito" id="botonVaciar"><img src="./../../img/carritoEliminar.png" alt="vaciar carrito" title="Vaciar carrito" class="tituloCruz__vaciarCarrito__img"></button>
             </div>
             <div class="input">
             </div>
@@ -38,11 +39,12 @@ if (localStorage.getItem("carrito")) {
                     <p class="stock">${producto.stock}</p>
                     <p id="precioUniN${producto.id}" class="precioUnitario">${producto.precio}$</p>
                     <div class="input">
-                    <button type="button" class="btn btn-primary" id="restaN${producto.id}" title="quita un producto">-</button>
+                    <button type="button" class="btn btn-primary" id="restaN${producto.id}" title="Resta un producto">-</button>
                     <input type="number" value="${producto.comprar}" id="cantidadN${producto.id}" min="1" max="${producto.stock}" class="inputNumber">
-                    <button type="button" class="btn btn-primary" id="sumaN${producto.id}" title="suma un producto">+</button>
+                    <button type="button" class="btn btn-primary" id="sumaN${producto.id}" title="Suma un producto">+</button>
                     </div>
-                    <img id="cruzN${producto.id}"class="cruz"src="./../../img/quitar.png" alt="cruz para quitar elemento del carrito" title="quitar elemento del carrito">
+                    <button id="cruzN${producto.id}" class="botonCruz"><img id="cruzN${producto.id}__img"class="botonCruz__img"src="./../../img/quitar.png" alt="cruz para quitar elemento del carrito" title="Quitar elemento del carrito"></button>
+                   
             </div>
             `
         }
@@ -96,7 +98,7 @@ if (localStorage.getItem("carrito")) {
                 carrito.splice(carrito.indexOf(elementoEliminado), 1)
                 localStorage.setItem("carrito", JSON.stringify(carrito))
                 Toastify({
-                    text: "Prducto eliminado correctamnete",
+                    text: "Producto eliminado correctamnete",
                     duration: 3000,
                     stopOnFocus: true,
                     gravity: "bottom",
@@ -116,7 +118,45 @@ if (localStorage.getItem("carrito")) {
                 }
             }
         }
-        //variable del prcio total que es la suma de todos los subtotales
+        //boton vaciar carrito
+        document.getElementById("botonVaciar").addEventListener("click", vaciarCarrito)
+        function vaciarCarrito() {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+            swalWithBootstrapButtons.fire({
+                title: '¿Estas seguro de vaciar el carrito?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, por favor',
+                cancelButtonText: 'No, gracias',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: "Carrito vaciado correctamente",
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    setTimeout(() =>//al terminar la compra a los productos comprados se le resta la cantidad de productos comprados al stock de estos y recarga la pagina para que aparezca que no hay productos en el carrito
+                    {
+                        for (let i = 0; i < carrito.length; i++) {
+                            let elementoEliminado = productos.find(producto => producto.id === carrito[i].id)
+                            elementoEliminado.disponible = elementoEliminado.stock
+                        }
+                        localStorage.setItem("productos", JSON.stringify(productos))
+                        localStorage.removeItem("carrito")
+                        location.reload()
+                    }, 1500)
+                }
+            })
+        }
+        //variable del precio total que es la suma de todos los subtotales
         precioTotal = total.reduce((acumulador, producto) => acumulador + parseInt(producto), 0)
         elementoTotal.innerText = "Total: " + precioTotal + "$"
         botonFinalizar.addEventListener("click", finalizarCompra)
@@ -144,14 +184,16 @@ if (localStorage.getItem("carrito")) {
                         timer: 1500
                     })
                     setTimeout(() =>//al terminar la compra a los productos comprados se le resta la cantidad de productos comprados al stock de estos y recarga la pagina para que aparezca que no hay productos en el carrito
-                    {for (let i = 0; i < carrito.length; i++) {
-                        let comprado = productos.find(producto => producto.id === carrito[i].id)
-                        let cant = document.getElementById("cantidadN" + carrito[i].id)
-                        comprado.stock -= cant.value
-                    }
+                    {
+                        for (let i = 0; i < carrito.length; i++) {
+                            let comprado = productos.find(producto => producto.id === carrito[i].id)
+                            let cant = document.getElementById("cantidadN" + carrito[i].id)
+                            comprado.stock -= cant.value
+                        }
                         localStorage.setItem("productos", JSON.stringify(productos))
                         localStorage.removeItem("carrito")
-                        location.reload()}, 1500)
+                        location.reload()
+                    }, 1500)
 
                 }
             })

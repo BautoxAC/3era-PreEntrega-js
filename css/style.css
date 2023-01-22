@@ -308,12 +308,6 @@
     width: 40%;
     height: 10rem; } }
 
-/*reset*/
-* {
-  margin: 0rem;
-  padding: 0rem;
-  box-sizing: border-box; }
-
 .body {
   width: 100%; }
 
@@ -535,7 +529,7 @@ a:hover {
   justify-content: center;
   align-items: center; }
 
-.elementoCarrito .cruz {
+.elementoCarrito .botonCruz {
   grid-area: quitar;
   width: 5rem;
   height: 5rem;
@@ -543,7 +537,11 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1.5rem; }
+  margin-top: 1.5rem;
+  border: 0; }
+  .elementoCarrito .botonCruz .botonCruz__img {
+    width: 6rem;
+    height: 6rem; }
 
 .inputNumber {
   margin: 0.3rem; }
@@ -602,6 +600,13 @@ a:hover {
 #titulo .tituloCruz {
   margin: 1rem;
   grid-area: cruz; }
+  #titulo .tituloCruz .tituloCruz__vaciarCarrito {
+    border: 0;
+    background-color: #dff6ff; }
+    #titulo .tituloCruz .tituloCruz__vaciarCarrito .tituloCruz__vaciarCarrito__img {
+      margin-left: -1rem;
+      height: 6rem;
+      width: 7rem; }
 
 #total {
   font-size: 1.5rem;
@@ -613,6 +618,12 @@ a:hover {
 #finalizarSi {
   height: 2.5rem;
   margin-right: 2rem; }
+
+.body {
+  margin-top: -1.8rem; }
+
+.head {
+  padding-top: 4rem; }
 
 /* estilos del nav */
 .body header nav {

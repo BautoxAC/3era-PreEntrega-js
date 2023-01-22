@@ -272,22 +272,19 @@
         }
     }
 }
-/*reset*/
-* {
-    margin: 0rem;
-    padding: 0rem;
-    box-sizing: border-box;
-}
-.body{
+
+.body {
     width: 100%;
 }
+
 /* estilos del index */
-#reinicio{
+#reinicio {
     position: absolute;
     top: 6rem;
     right: 0;
     font-size: 1.5rem;
 }
+
 #h1 {
     margin-top: 2rem;
     font-size: 3rem;
@@ -326,6 +323,7 @@ a:hover {
 .volver {
     color: black;
 }
+
 /* estilos de las utilidades del index */
 
 #utilidades {
@@ -342,14 +340,17 @@ a:hover {
     display: flex;
     justify-content: end;
 }
+
 .carrito__img {
     width: 8rem;
     height: 8rem;
 }
+
 .buscador {
     margin: 1rem;
     grid-area: buscador;
 }
+
 /* estilos de las categorias */
 .categorias {
     list-style: none;
@@ -358,6 +359,7 @@ a:hover {
     justify-content: flex-end;
     padding-bottom: 2rem;
 }
+
 .categorias__mostrar__hijo {
     display: none;
     list-style: none;
@@ -368,22 +370,28 @@ a:hover {
     border: 1px solid black;
     border-radius: 3px;
 }
+
 .categorias__mostrar:hover>ul {
     display: block;
 }
-.categorias__mostrar__hijo__li{
+
+.categorias__mostrar__hijo__li {
     font-size: 1.5rem;
 }
-.categorias__mostrar__hijo__check{
+
+.categorias__mostrar__hijo__check {
     height: 1rem;
     width: 1rem;
 }
+
 .categorias {
     grid-area: categorias;
 }
-.categorias__mostrar__titulo{
+
+.categorias__mostrar__titulo {
     font-size: 5rem;
 }
+
 /* estilos de las estiquetas de productos */
 .mainpro__hijo {
     display: flex;
@@ -405,72 +413,84 @@ a:hover {
 }
 
 .mainpro__hijo__img {
-    width:8rem;
+    width: 8rem;
     height: 8rem;
 }
 
 /* estilos ver producto */
-.comprarProductoHijo__img{
+.comprarProductoHijo__img {
     width: 20rem;
     height: 20rem;
 }
-.comprarProductoHijo{
+
+.comprarProductoHijo {
     width: 100%;
     min-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#volver{
+
+#volver {
     display: block;
     margin-top: 1rem;
 }
-#carrito{
+
+#carrito {
     margin: 1rem;
 }
+
 /* extras */
 .noMostrar {
     display: none;
 }
+
 #noMostrar {
     display: none;
 }
+
 /* estilos carrito */
-#mainCarrito__contenedorCarrito{
+#mainCarrito__contenedorCarrito {
     width: 100%;
     min-height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .finalizarSi {
     display: inline;
 }
+
 /* elementos del carrito */
-#mainCarrito__utilidades{
+#mainCarrito__utilidades {
     display: flex;
     justify-content: end;
     margin: 1rem;
 }
-#mainCarrito__contenedorCarrito{
+
+#mainCarrito__contenedorCarrito {
     display: flex;
     flex-direction: column;
 }
-.elementoCarrito{
+
+.elementoCarrito {
     display: grid;
-    grid-template-areas: 
-    "img titulo stock Unitario input subtotal quitar";
+    grid-template-areas:
+        "img titulo stock Unitario input subtotal quitar";
     margin: 1.25rem;
     width: 90%;
     grid-template-columns: 8rem 10rem 6rem 8rem 12rem 8rem 8rem;
 }
-.elementoCarrito .elementoCarrito__img{
+
+.elementoCarrito .elementoCarrito__img {
     grid-area: img;
     width: 6rem;
     height: 6rem;
     margin: 1rem;
 }
-.elementoCarrito .subtotal{
+
+.elementoCarrito .subtotal {
     grid-area: subtotal;
     margin: 1rem;
     font-size: 1.5rem;
@@ -478,7 +498,8 @@ a:hover {
     justify-content: center;
     align-items: center;
 }
-.elementoCarrito .stock{
+
+.elementoCarrito .stock {
     grid-area: stock;
     margin: 1rem;
     font-size: 1.5rem;
@@ -486,7 +507,8 @@ a:hover {
     justify-content: center;
     align-items: center;
 }
-.elementoCarrito .precioUnitario{
+
+.elementoCarrito .precioUnitario {
     grid-area: Unitario;
     margin: 1rem;
     font-size: 1.5rem;
@@ -494,7 +516,8 @@ a:hover {
     justify-content: center;
     align-items: center;
 }
-.elementoCarrito .input{
+
+.elementoCarrito .input {
     grid-area: input;
     margin: 1rem;
     margin-top: 2.5rem;
@@ -504,15 +527,17 @@ a:hover {
     justify-content: center;
     align-items: center;
 }
-.elementoCarrito .nombre{
-    grid-area:titulo;
+
+.elementoCarrito .nombre {
+    grid-area: titulo;
     margin: 1rem;
     font-size: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.elementoCarrito .cruz{
+
+.elementoCarrito .botonCruz {
     grid-area: quitar;
     width: 5rem;
     height: 5rem;
@@ -521,19 +546,28 @@ a:hover {
     justify-content: center;
     align-items: center;
     margin-top: 1.5rem;
+    border: 0;
+
+    .botonCruz__img {
+        width: $medida-3*2;
+        height: $medida-3*2;
+    }
 }
-.inputNumber{
+
+.inputNumber {
     margin: 0.3rem;
 }
-#titulo{
+
+#titulo {
     display: grid;
-    grid-template-areas: 
-    "img nombre disp precioUni input sub cruz";
+    grid-template-areas:
+        "img nombre disp precioUni input sub cruz";
     margin: 1.25rem;
     width: 90%;
     grid-template-columns: 8rem 10rem 6rem 8rem 12rem 8rem 8rem;
 }
-#titulo .tituloElementoCarrito__img{
+
+#titulo .tituloElementoCarrito__img {
     margin: 1rem;
     grid-area: img;
     display: flex;
@@ -541,7 +575,8 @@ a:hover {
     align-items: center;
     font-size: 1.8rem;
 }
-#titulo .tituloNombre{
+
+#titulo .tituloNombre {
     margin: 1rem;
     grid-area: nombre;
     display: flex;
@@ -549,7 +584,8 @@ a:hover {
     align-items: center;
     font-size: 1.8rem;
 }
-#titulo .tituloStock{
+
+#titulo .tituloStock {
     margin: 1rem;
     grid-area: disp;
     display: flex;
@@ -557,7 +593,8 @@ a:hover {
     align-items: center;
     font-size: 1.8rem;
 }
-#titulo .tituloPrecioUnitario{
+
+#titulo .tituloPrecioUnitario {
     margin: 1rem;
     grid-area: precioUni;
     display: flex;
@@ -565,11 +602,13 @@ a:hover {
     align-items: center;
     font-size: 1.8rem;
 }
-#titulo .input{
+
+#titulo .input {
     margin: 1rem;
     grid-area: input;
 }
-#titulo .tituloSubtotal{
+
+#titulo .tituloSubtotal {
     margin: 1rem;
     grid-area: sub;
     display: flex;
@@ -577,18 +616,39 @@ a:hover {
     align-items: center;
     font-size: 1.8rem;
 }
-#titulo .tituloCruz{
+
+#titulo .tituloCruz {
     margin: 1rem;
     grid-area: cruz;
+
+    .tituloCruz__vaciarCarrito {
+        border: 0;
+        background-color: nth($colores, 3);
+
+        .tituloCruz__vaciarCarrito__img {
+            margin-left: -$medida-1;
+            height: $medida-4 + $medida-2;
+            width: $medida-4 + $medida-3;
+        }
+    }
 }
-#total{
+
+#total {
     font-size: 1.5rem;
     margin-right: 3rem;
 }
-#mainCarrito__utilidades{
+
+#mainCarrito__utilidades {
     display: flex;
 }
-#finalizarSi{
+
+#finalizarSi {
     height: 2.5rem;
     margin-right: 2rem;
+}
+.body{
+    margin-top: -1.8rem;
+}
+.head{
+    padding-top: 4rem;
 }
