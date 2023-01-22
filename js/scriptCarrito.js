@@ -33,7 +33,7 @@ if (localStorage.getItem("carrito")) {
         for (const producto of carrito) {
             contenedorCarrito.innerHTML += `
             <div id="elementoCarrito${producto.id}"class="elementoCarrito">
-            <img src="${"./." + producto.imgUrl}" alt="${producto.alt}" class="elementoCarrito__img">
+            <img src="${producto.imgUrl}" alt="${producto.alt}" class="elementoCarrito__img">
                     <h3 class="nombre">${producto.nombre}</h3>
                     <p id="precioN${producto.id}" class="subtotal">${producto.precio * producto.comprar}$</p>
                     <p class="stock">${producto.stock}</p>
