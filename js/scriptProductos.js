@@ -1,5 +1,3 @@
-const DateTime = luxon.DateTime
-console.log(DateTime.local().year)
 fetch("./../../productos.json")
     .then(response => response.json())
     .then(productos => TodoElPrograma(productos))
