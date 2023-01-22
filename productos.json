@@ -1,0 +1,13 @@
+[
+    { "nombre": "JeansB", "id": 0, "categoria": "pantalones", "stock": 4, "precio": 20, "imgUrl": "./../../img/productos/JeansB.png","alt":"foto de unos jeans azules" },
+    { "nombre": "MediasC", "id": 1, "categoria": "medias", "stock": 10, "precio": 30, "imgUrl": "./../../img/productos/MediasC.png","alt":"foto de medias color celeste" },
+    { "nombre": "MediasB", "id": 2, "categoria": "medias", "stock": 8, "precio": 20, "imgUrl": "./../../img/productos/MediasB.png","alt":"for de medias de color azul" },
+    { "nombre": "Bluney", "id": 3, "categoria": "remeras", "stock": 12, "precio": 20, "imgUrl": "./../../img/productos/Bluney.png","alt":"foto de remera azul oscuro sin estampado" },
+    { "nombre": "PantC", "id": 4, "categoria": "pantalones", "stock": 14, "precio": 45, "imgUrl": "./../../img/productos/PantC.png","alt":"foto de pantalon de color azul" },
+    { "nombre": "DarkC", "id": 5, "categoria": "remeras", "stock": 20, "precio": 20, "imgUrl": "./../../img/productos/DarkC.png","alt":"foto de remera celeste oscuro" },
+    { "nombre": "Celestyn", "id": 6, "categoria": "accesorios", "stock": 3, "precio": 20, "imgUrl": "./../../img/productos/Celestyn.png","alt":"foto de brazalete de un color celeste" },
+    { "nombre": "Celest", "id": 7, "categoria": "vestidos", "stock": 11, "precio": 50, "imgUrl": "./../../img/productos/Celest.png","alt":"foto de un vestido celeste" },
+    { "nombre": "LightE", "id": 8, "categoria": "remeras", "stock": 16, "precio": 15, "imgUrl": "./../../img/productos/LightE.png","alt":"foto de remera con estampado pequeño y color celeste con raya blanca" },
+    { "nombre": "LightB", "id": 9, "categoria": "vestidos", "stock": 6, "precio": 50, "imgUrl": "./../../img/productos/LightB.png","alt":"foto de vestido LightB color azul" },
+    { "nombre": "LightE2", "id": 10, "categoria": "remeras", "stock": 7, "precio": 20, "imgUrl": "./../../img/productos/LightE2.png","alt":"foto de remera de color azul llamada lightE2" }
+]

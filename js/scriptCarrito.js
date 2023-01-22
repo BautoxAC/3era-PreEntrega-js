@@ -24,6 +24,7 @@ if (localStorage.getItem("carrito")) {
             <h2 class="tituloStock">Stock</h2>
             <h2 class="tituloPrecioUnitario">C/U</h2>
             <div class="tituloCruz">
+            <button class="tituloCruz__vaciarCarrito" id="botonVaciar"><img src="./../../img/carritoEliminar.png" alt="vaciar carrito" title="Vaciar carrito" class="tituloCruz__vaciarCarrito__img"></button>
             </div>
             <div class="input">
             </div>
@@ -32,17 +33,18 @@ if (localStorage.getItem("carrito")) {
         for (const producto of carrito) {
             contenedorCarrito.innerHTML += `
             <div id="elementoCarrito${producto.id}"class="elementoCarrito">
-            <img src="${"./." + producto.imgUrl}" alt="medias de color azul" class="elementoCarrito__img">
+            <img src="${"./." + producto.imgUrl}" alt="${producto.alt}" class="elementoCarrito__img">
                     <h3 class="nombre">${producto.nombre}</h3>
                     <p id="precioN${producto.id}" class="subtotal">${producto.precio * producto.comprar}$</p>
                     <p class="stock">${producto.stock}</p>
                     <p id="precioUniN${producto.id}" class="precioUnitario">${producto.precio}$</p>
                     <div class="input">
-                    <button type="button" class="btn btn-primary" id="restaN${producto.id}">-</button>
+                    <button type="button" class="btn btn-primary" id="restaN${producto.id}" title="Resta un producto">-</button>
                     <input type="number" value="${producto.comprar}" id="cantidadN${producto.id}" min="1" max="${producto.stock}" class="inputNumber">
-                    <button type="button" class="btn btn-primary" id="sumaN${producto.id}">+</button>
+                    <button type="button" class="btn btn-primary" id="sumaN${producto.id}" title="Suma un producto">+</button>
                     </div>
-                    <img id="cruzN${producto.id}"class="cruz"src="./../../img/quitar.png" alt="cruz para quitar elemento del carrito" title="quitar elemento del carrito">
+                    <button id="cruzN${producto.id}" class="botonCruz"><img id="cruzN${producto.id}__img"class="botonCruz__img"src="./../../img/quitar.png" alt="cruz para quitar elemento del carrito" title="Quitar elemento del carrito"></button>
+                   
             </div>
             `
         }
@@ -95,6 +97,16 @@ if (localStorage.getItem("carrito")) {
                 localStorage.setItem("productos", JSON.stringify(productos))
                 carrito.splice(carrito.indexOf(elementoEliminado), 1)
                 localStorage.setItem("carrito", JSON.stringify(carrito))
+                Toastify({
+                    text: "Producto eliminado correctamnete",
+                    duration: 3000,
+                    stopOnFocus: true,
+                    gravity: "bottom",
+                    position: "right",
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+                }).showToast();
                 //si no hay nada en el carrito aparece que no hay productos
                 if (carrito.length === 0) {
                     contenedorCarrito.innerHTML = `<h2>No hay productos en el carrito</h2>`
@@ -106,44 +118,85 @@ if (localStorage.getItem("carrito")) {
                 }
             }
         }
-        //variable del prcio total que es la suma de todos los subtotales
+        //boton vaciar carrito
+        document.getElementById("botonVaciar").addEventListener("click", vaciarCarrito)
+        function vaciarCarrito() {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+            swalWithBootstrapButtons.fire({
+                title: '¿Estas seguro de vaciar el carrito?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, por favor',
+                cancelButtonText: 'No, gracias',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: "Carrito vaciado correctamente",
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    setTimeout(() =>//al terminar la compra a los productos comprados se le resta la cantidad de productos comprados al stock de estos y recarga la pagina para que aparezca que no hay productos en el carrito
+                    {
+                        for (let i = 0; i < carrito.length; i++) {
+                            let elementoEliminado = productos.find(producto => producto.id === carrito[i].id)
+                            elementoEliminado.disponible = elementoEliminado.stock
+                        }
+                        localStorage.setItem("productos", JSON.stringify(productos))
+                        localStorage.removeItem("carrito")
+                        location.reload()
+                    }, 1500)
+                }
+            })
+        }
+        //variable del precio total que es la suma de todos los subtotales
         precioTotal = total.reduce((acumulador, producto) => acumulador + parseInt(producto), 0)
         elementoTotal.innerText = "Total: " + precioTotal + "$"
         botonFinalizar.addEventListener("click", finalizarCompra)
         function finalizarCompra() {
-            do {
-                let pago = Number(prompt("Debe pagar: " + precioTotal + "$"))
-                //Si paga menos de la cantidad que debe
-                if (pago < precioTotal) {
-                    precioTotal = precioTotal - pago
-                    faltapagar = true
-                    //si paga mas de lo que debe se le da vuelto
-                } else if (pago > precioTotal) {
-                    let vuelto = precioTotal - pago
-                    alert("Su vuelto es de: " + (-vuelto) + "$")
-                    alert("Disfrute su compra")
-                    faltapagar = false
-                    break
-                } else if (pago === precioTotal) {
-                    //si paga igual
-                    pago = precioTotal - pago
-                    alert("Disfrute su compra")
-                    faltapagar = false
-                    break
-                } else {
-                    alert("ERROR")
-                    faltapagar = true
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+            swalWithBootstrapButtons.fire({
+                title: '¿Estas seguro de finalizar tu compra?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, por favor',
+                cancelButtonText: 'No, gracias',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Compra finalizada correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    setTimeout(() =>//al terminar la compra a los productos comprados se le resta la cantidad de productos comprados al stock de estos y recarga la pagina para que aparezca que no hay productos en el carrito
+                    {
+                        for (let i = 0; i < carrito.length; i++) {
+                            let comprado = productos.find(producto => producto.id === carrito[i].id)
+                            let cant = document.getElementById("cantidadN" + carrito[i].id)
+                            comprado.stock -= cant.value
+                        }
+                        localStorage.setItem("productos", JSON.stringify(productos))
+                        localStorage.removeItem("carrito")
+                        location.reload()
+                    }, 1500)
+
                 }
-            } while (faltapagar === true)
-            //al terminar la compra a los productos comprados se le resta la cantidad de productos comprados al stock de estos y recarga la pagina para que aparezca que no hay productos en el carrito
-            for (let i = 0; i < carrito.length; i++) {
-                let comprado = productos.find(producto => producto.id === carrito[i].id)
-                let cant = document.getElementById("cantidadN" + carrito[i].id)
-                comprado.stock -= cant.value
-            } 
-            localStorage.setItem("productos", JSON.stringify(productos))
-            localStorage.removeItem("carrito")
-            location.reload()
+            })
         }
     }
     renderizarCarrito()
