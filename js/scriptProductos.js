@@ -50,16 +50,22 @@ function TodoElPrograma(productos) {
             let {disponible,id,imgUrl,precio,nombre,stock}=producto
             //determina la variable del objeto producto para ver cuantos de ese tipo hay disponibles y si no hay disponibles no deja agregar mas ya que estan todos en el carrito
             let verProductoBoton = document.getElementById("producto__N:" + i + "__boton")
-            if (stock === 0) {
-                verProductoBoton.innerText = "Sin Stock"
-            } else {
-                verProductoBoton.addEventListener("click", verProducto)
-            }
             //agrega uno al carrito
             let botonAgregar=document.getElementById("agreger-"+id)
-            botonAgregar.addEventListener("click",()=>{
-                agregarAlCarrito(1)
-            })
+            if (stock === 0) {
+                verProductoBoton.innerText = "Sin Stock"
+                botonAgregar.addEventListener("click",()=>{Swal.fire({
+                    icon: "error",
+                    title: "Sin STOCK",
+                    text: "No hay Stock disponible del producto",
+                })
+                })
+            } else {
+                verProductoBoton.addEventListener("click", verProducto)
+                botonAgregar.addEventListener("click",()=>{
+                    agregarAlCarrito(1)
+                })
+            }
             function agregarAlCarrito(ValorAAgregar) {
                 if (disponible === 0) {
                     Swal.fire({
@@ -104,10 +110,9 @@ function TodoElPrograma(productos) {
             }
             //script para visualizar productos a comprar
             function verProducto() {
-                //al ver el producto seleccionado las utilidades el titulo y el boton reinicio no se muestran
+                //al ver el producto seleccionado las utilidades el titulo
                 utiliadesIndex.id = "noMostrar"
                 tituloIndex.id = "noMostrar"
-                reini.id = "noMostrar"
                 //muestra el producto seleccionado
                 contenedorProductos.innerHTML =
                     `<div class="comprarProductoHijo" id="producto${id}">
