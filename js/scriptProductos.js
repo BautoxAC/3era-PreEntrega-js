@@ -10,16 +10,6 @@ function TodoElPrograma(productos) {
     let proFiltradoCate = []
     let clickeados = 0
     let buscador = document.getElementById("search")
-    //un boton para restablecer la pagina a los valores iniciales
-    let reini = document.getElementById("reinicio")
-    reini.addEventListener("click", reinicio)
-    function reinicio() {
-        fetch("./../../productos.json")
-            .then(response => response.json())
-            .then(productos => TodoElPrograma(productos))
-        localStorage.clear()
-        location.reload()
-    }
     if (localStorage.getItem("carrito")) {
         carrito = JSON.parse(localStorage.getItem("carrito"))
     }
