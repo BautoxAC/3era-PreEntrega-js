@@ -247,9 +247,11 @@ a:hover {
   padding-left: 0rem;
   padding: 1rem;
   position: absolute;
+  z-index: 10;
   background-color: aqua;
   border: 1px solid black;
-  border-radius: 3px; }
+  border-radius: 3px;
+  z-index: 10; }
 
 .categorias__mostrar:hover > ul {
   display: block; }
@@ -276,7 +278,15 @@ a:hover {
   border: 0.3rem solid #20618a;
   border-radius: 0.5rem;
   padding: 2rem;
-  width: 18%; }
+  width: 18%;
+  position: relative; }
+  .mainpro__hijo .mainpro__hijo-imgAgrega {
+    height: 5rem;
+    width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer; }
 
 #mainpro {
   display: flex;
@@ -484,7 +494,7 @@ a:hover {
 .bodyCarrito {
   margin-top: -1.8rem;
   background-color: #dff6ff;
-  font-family: Futura,sans-serif;
+  font-family: Futura, sans-serif;
   color: #06283d;
   width: 100%; }
 

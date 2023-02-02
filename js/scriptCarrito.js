@@ -1,9 +1,9 @@
 let contenedorCarrito = document.getElementById("mainCarrito__contenedorCarrito")
 let carrito = []
-let total = []
+let subtotales = []
 let productos = JSON.parse(localStorage.getItem("productos"))
 let faltapagar = true
-let elementoTotal = document.getElementById("total")
+let Total = document.getElementById("total")
 let precioTotal = 0
 let botonFinalizar = document.getElementById("finalizar")
 //revisa si hay productos en el carrito
@@ -13,8 +13,8 @@ if (localStorage.getItem("carrito")) {
     function renderizarCarrito() {
         carrito = JSON.parse(localStorage.getItem("carrito"))
         contenedorCarrito.innerHTML = ""
-        elementoTotal.innerText = ""
-        total = []
+        Total.innerText = ""
+        subtotales = []
         //titulos de las categorias
         contenedorCarrito.innerHTML = `
         <div id="titulo">
@@ -30,68 +30,76 @@ if (localStorage.getItem("carrito")) {
             </div>
         </div>
             `
-        for (const producto of carrito) {
+        for (let i = 0; i < carrito.length; i++) {
+            const producto = carrito[i];
+            const { id, alt, comprar, stock, imgUrl, precio, nombre } = producto
             contenedorCarrito.innerHTML += `
-            <div id="elementoCarrito${producto.id}"class="elementoCarrito">
-            <img src="${producto.imgUrl}" alt="${producto.alt}" class="elementoCarrito__img">
-                    <h3 class="nombre">${producto.nombre}</h3>
-                    <p id="precioN${producto.id}" class="subtotal">${producto.precio * producto.comprar}$</p>
-                    <p class="stock">${producto.stock}</p>
-                    <p id="precioUniN${producto.id}" class="precioUnitario">${producto.precio}$</p>
+            <div id="elementoCarrito${id}"class="elementoCarrito">
+            <img src="${imgUrl}" alt="${alt}" class="elementoCarrito__img">
+                    <h3 class="nombre">${nombre}</h3>
+                    <p id="precioN${id}" class="subtotal">${precio * comprar}$</p>
+                    <p class="stock">${stock}</p>
+                    <p id="precioUniN${id}" class="precioUnitario">${precio}$</p>
                     <div class="input">
-                    <button type="button" class="btn btn-primary" id="restaN${producto.id}" title="Resta un producto">-</button>
-                    <input type="number" value="${producto.comprar}" id="cantidadN${producto.id}" min="1" max="${producto.stock}" class="inputNumber">
-                    <button type="button" class="btn btn-primary" id="sumaN${producto.id}" title="Suma un producto">+</button>
+                    <button type="button" class="btn btn-primary" id="restaN${id}" title="Resta un producto">-</button>
+                    <input type="number" value="${comprar}" id="cantidadN${id}" min="1" max="${stock}" class="inputNumber">
+                    <button type="button" class="btn btn-primary" id="sumaN${id}" title="Suma un producto">+</button>
                     </div>
-                    <button id="cruzN${producto.id}" class="botonCruz"><img id="cruzN${producto.id}__img"class="botonCruz__img"src="./../../img/quitar.png" alt="cruz para quitar elemento del carrito" title="Quitar elemento del carrito"></button>
-                   
+                    <button id="cruzN${id}" class="botonCruz"><img id="cruzN${id}__img"class="botonCruz__img"src="./../../img/quitar.png" alt="cruz para quitar elemento del carrito" title="Quitar elemento del carrito"></button>
             </div>
             `
+
         }
         for (let i = 0; i < carrito.length; i++) {
-            //funcion si ocurre un cambio de precio los valores del subtotal y el total cambien
-            function cambioDePrecio() {
-                precio.innerText = cant.value * producto.precio + "$"
-                total[i] = parseInt(precio.innerText)
-                elementoTotal.innerText = "Total: " + total.reduce((acumulador, producto) => acumulador + parseInt(producto), 0) + "$"
-                precioTotal = parseInt(elementoTotal.innerText)
-            }
             const producto = carrito[i]
+            const { id, comprar, stock, precio } = producto
             //el input de la cantidad a comprar
-            let cant = document.getElementById("cantidadN" + producto.id)
-            //valor del subtotal
-            let precio = document.getElementById("precioN" + producto.id)
-            document.getElementById("sumaN" + producto.id).addEventListener("click", suma1)
-            document.getElementById("restaN" + producto.id).addEventListener("click", resta1)
+            let cant = document.getElementById("cantidadN" + id)
+            let subtotal = document.getElementById("precioN" + id)
+            document.getElementById("sumaN" + id).addEventListener("click", suma1)
+            document.getElementById("restaN" + id).addEventListener("click", resta1)
             function suma1() {
-                if (producto.stock > cant.value && cant.value >= 0) {
+                if (stock > cant.value && cant.value >= 0) {
                     cant.value++
                     cambioDePrecio()
                 }
             }
             function resta1() {
-                if (producto.stock >= cant.value && cant.value > 1) {
+                if (stock >= cant.value && cant.value > 1) {
                     cant.value--
                     cambioDePrecio()
                 }
             }
-            precio.innerText = cant.value * producto.precio + "$"
-            total.push(precio.innerText)
-            cant.addEventListener("change", cambioPrecio)
+            //funcion si ocurre un cambio de precio los valores del subtotal y el total cambien
+            function cambioDePrecio() {
+                let productoCambiado = productos.find(producto => producto.id === carrito[i].id)
+                producto.comprar=Number(cant.value)
+                productoCambiado.disponible=stock-cant.value
+                productoCambiado.comprar=producto.comprar
+                localStorage.setItem("carrito", JSON.stringify(carrito))
+                localStorage.setItem("productos", JSON.stringify(productos))
+                subtotal.innerText = cant.value * precio + "$"
+                subtotales[i] = parseInt(subtotal.innerText)
+                Total.innerText = "Total: " + subtotales.reduce((acumulador, producto) => acumulador + parseInt(producto), 0) + "$"
+                precioTotal = parseInt(Total.innerText)
+            }
+            subtotal.innerText = cant.value * precio + "$"
+            subtotales.push(subtotal.innerText)
+            cant.addEventListener("change", revisaSiCambia)
             //revisa que el valor ingresado por el usuario sea correcto
-            function cambioPrecio() {
-                if (cant.value <= producto.stock && cant.value > 0) {
+            function revisaSiCambia() {
+                if (cant.value <= stock && cant.value > 0) {
                     cambioDePrecio()
                 } else {
-                    alert("Ingrese un valor entre 1 y " + producto.stock)
-                    cant.value = producto.comprar
+                    alert("Ingrese un valor entre 1 y " + stock)
+                    cant.value = comprar
                     cambioDePrecio()
                 }
             }
             //agarra la cruz roja que esta al lado de cada elemento ye elimina el prodructo del carrito
-            document.getElementById("cruzN" + producto.id).addEventListener("click", eliminarProducto)
+            document.getElementById("cruzN" + id).addEventListener("click", eliminarProducto)
             function eliminarProducto() {
-                let elementoEliminado = productos.find(producto1 => producto1.id === producto.id)
+                let elementoEliminado = productos.find(producto1 => producto1.id === id)
                 elementoEliminado.disponible = elementoEliminado.stock
                 //cambia los valores del producto eliminado del carrito volviendolo a como era antes de ser agregado al carrito
                 localStorage.setItem("productos", JSON.stringify(productos))
@@ -111,7 +119,7 @@ if (localStorage.getItem("carrito")) {
                 if (carrito.length === 0) {
                     contenedorCarrito.innerHTML = `<h2>No hay productos en el carrito</h2>`
                     botonFinalizar.id = "noMostrar"
-                    elementoTotal.innerText = ""
+                    Total.innerText = ""
                     localStorage.removeItem("carrito")
                 } else {
                     renderizarCarrito()
@@ -158,8 +166,8 @@ if (localStorage.getItem("carrito")) {
             })
         }
         //variable del precio total que es la suma de todos los subtotales
-        precioTotal = total.reduce((acumulador, producto) => acumulador + parseInt(producto), 0)
-        elementoTotal.innerText = "Total: " + precioTotal + "$"
+        precioTotal = subtotales.reduce((acumulador, producto) => acumulador + parseInt(producto), 0)
+        Total.innerText = "Total: " + precioTotal + "$"
         botonFinalizar.addEventListener("click", finalizarCompra)
         function finalizarCompra() {
             const swalWithBootstrapButtons = Swal.mixin({
@@ -204,6 +212,6 @@ if (localStorage.getItem("carrito")) {
     renderizarCarrito()
 } else {
     contenedorCarrito.innerHTML = `<h2>No hay productos en el carrito</h2>`
-    elementoTotal.innerText = ""
+    Total.innerText = ""
     botonFinalizar.id = "noMostrar"
 }
